@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>Vendor Price Lists | IOM Vendor Proforma Generator</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#85f8c4", "outline": "#74777e", "surface-container": "#e5eeff", "surface-bright": "#f8f9ff", "primary": "#000f22", "surface-container-low": "#eff4ff", "background": "#f8f9ff", "inverse-surface": "#213145", "tertiary-fixed-dim": "#68dba9", "error": "#ba1a1a", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-container": "#7db6ff", "on-surface": "#0b1c30", "on-background": "#0b1c30", "secondary": "#1960a3", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b0c8eb", "error-container": "#ffdad6", "on-surface-variant": "#43474d", "on-secondary": "#ffffff", "secondary-fixed-dim": "#a2c9ff", "on-secondary-container": "#00477f", "on-primary-container": "#768dad", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#005137", "primary-fixed": "#d2e4ff", "secondary-fixed": "#d3e4ff", "on-primary-fixed-variant": "#314865", "inverse-on-surface": "#eaf1ff", "tertiary": "#001209", "on-tertiary-fixed": "#002114", "surface-dim": "#cbdbf5", "surface-container-high": "#dce9ff", "on-secondary-fixed-variant": "#004881", "on-secondary-fixed": "#001c38", "surface-container-highest": "#d3e4fe", "surface": "#f8f9ff", "primary-container": "#0a2540", "on-primary-fixed": "#001c37", "inverse-primary": "#b0c8eb", "tertiary-container": "#002a1b", "on-error": "#ffffff", "on-error-container": "#93000a", "on-tertiary-container": "#1a9e70", "surface-tint": "#49607e", "outline-variant": "#c4c6ce" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1rem", "gutter-dense": "0.5rem", "space-sm": "0.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "space-lg": "1.25rem", "margin-panel": "2rem", "space-xl": "1.75rem", "margin": "1.5rem" }, "fontFamily": { "headline-sm": ["Inter"], "headline-lg": ["Inter"], "body-lg": ["Inter"], "financial-lg": ["Inter"], "body-md": ["Inter"], "display-lg": ["Inter"], "financial-md": ["Inter"], "label-sm": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Inter"], "label-uppercase": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "headline-sm": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "financial-lg": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "financial-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-uppercase": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "500" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[260px] bg-primary-container z-50 flex flex-col justify-between border-r border-outline-variant/20 shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="flex flex-col"><div class="p-space-lg border-b border-outline-variant/15"><div class="flex items-center gap-space-sm mb-space-xs"><img alt="IOM Proforma Generator Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VSQjfg0ycij9hDdszm_c3Tcv8ESkNdS1rZBVrHJEbNJN_TZrujgUAMsAzvqWZwozVFKExo23KwgP50XklnwNPqmHaAG2fETrqGxQNNnLn0J7DA04EnySwrAxmgGHEQAsfwKhCAP8M4NAPwjAmqhQmfKd8NA-A1eBkmWtXN9JwhEPhIePpT7lZkDl-y_Q9_AST9kR1_pBV9VKAlQo_nJ3BiKw0SQJvN-mqBHfO32FGBM70oysGSg8XGx26B"/><div class="flex flex-col"><span class="font-label-uppercase text-label-uppercase text-primary-fixed tracking-wider">IOM UN MIGRATION</span><span class="font-label-sm text-label-sm text-primary-fixed-dim leading-none">Proforma Generator</span></div></div><div class="mt-space-sm inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high/15 border border-outline-variant/20"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span><span class="font-label-sm text-label-sm text-surface-variant">Sierra Leone Mission • Freetown</span></div></div><div class="px-space-md py-space-sm"><span class="font-label-uppercase text-label-uppercase text-on-primary-container px-space-sm">Operations & Core</span></div><nav class="flex flex-col gap-1 px-space-sm" data-active-classes="bg-secondary/40 text-on-primary font-headline-sm border-l-[3px] border-secondary-container"><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="generate-proforma" href="#"><span class="material-symbols-outlined text-[20px]">post_add</span><span>Generate Proforma</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg transition-colors bg-secondary/40 text-on-primary font-headline-sm border-l-[3px] border-secondary-container" data-path="vendor-price-lists" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span><span>Vendor Price Lists</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="proforma-history" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span>Proforma History</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-outline-variant/15 flex flex-col gap-space-sm"><div class="bg-surface-container-high/10 rounded-lg p-space-sm border border-outline-variant/20 flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-uppercase text-label-uppercase text-primary-fixed-dim">System Status</span><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span></div><span class="font-body-sm text-body-sm text-surface-bright">4 Approved Vendors Active</span></div><a class="flex items-center gap-space-sm px-space-sm py-1.5 text-primary-fixed-dim hover:text-on-primary transition-colors font-label-sm text-label-sm" data-path="documentation" href="#"><span class="material-symbols-outlined text-[18px]">help</span><span>Help & Statutory Guides</span></a></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_1px_4px_rgba(10,37,64,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><span class="font-label-md text-label-md text-on-surface font-semibold">Freetown Office</span><span class="text-outline">/</span><span class="text-secondary font-medium">Procurement & Logistics Unit</span></div><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-secondary font-semibold">Statutory PO Desk</span></div><div class="flex items-center gap-space-lg"><div class="relative flex items-center w-72"><span class="material-symbols-outlined absolute left-2.5 text-outline text-[18px]">search</span><input class="w-full pl-8 pr-3 py-1.5 bg-surface-container-low border border-outline-variant/60 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary focus:bg-surface-container-lowest transition-colors" placeholder="Quick proforma jump (P-YYYY-#)..." type="text"/></div><button class="relative p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-[1px] bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH2XEN6X1haeGeWWJ31Imf9DFGX1dbDaYjkVPBOjo5lL8F3n1C3zu-2WBw1P_z4GtsxA1ruC7r5A2O6sTaaBTX4iGEKChNkbsafvrLmATsvB-kgnQ7TfWpDtwE5LrU0WOwNQ53AZvHBgmj2IoLAXkpPprYoyexufrjRb7ECvRy5LWvuu6hpVN8xHfS39XaQzoOjESWK3sBBkKjBckdQS7bXyYYlaFnJSxSoqRhLtUu8ckt8DmRJcq7Cg"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight font-semibold">Samuel Kargbo</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Senior Procurement Associate</span></div></div></div></header><main class="relative pt-16 bg-background min-h-screen p-space-lg w-full max-w-[1600px] mx-auto"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg pb-space-xl">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-uppercase text-label-uppercase text-secondary tracking-widest">UN IOM Statutory Procurement Repository</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">LTA Compliance Ref 2024-2025</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Vendor Price Lists</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+          Directory of approved multilateral framework vendors with contracted fixed item unit schedules. Unit rates remain statutorily locked throughout the active fiscal semester.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<button class="group flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all duration-150 shadow-sm active:translate-y-px" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">download</span>
+<span>Export All Catalogues (.CSV)</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md transition-all duration-150 shadow-sm active:translate-y-px" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">cloud_upload</span>
+<span>Import Price List Update</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="relative flex-1 max-w-xl">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg transition-colors focus:outline-none" id="vendorSearchInput" placeholder="Search vendor name, LTA contract #, or commodity category..." type="text"/>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high/50 text-secondary">
+<span class="material-symbols-outlined text-[17px] text-secondary">lock</span>
+<span class="font-label-sm text-label-sm leading-tight text-on-surface-variant">
+<strong class="font-semibold text-secondary">Price Lock Policy Active:</strong> All unit rates immutable during FY25 S1.
+          </span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-1.5" id="categoryFilterContainer">
+<button class="filter-pill active-pill px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 bg-secondary text-on-secondary shadow-sm" data-filter="all" type="button">
+            All Vendors (4)
+          </button>
+<button class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 bg-surface-container text-on-surface-variant hover:bg-surface-container-high" data-filter="goods" type="button">
+            Goods & Consumables (2)
+          </button>
+<button class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 bg-surface-container text-on-surface-variant hover:bg-surface-container-high" data-filter="services" type="button">
+            Services & Logistics (1)
+          </button>
+<button class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 bg-surface-container text-on-surface-variant hover:bg-surface-container-high" data-filter="equipment" type="button">
+            Hard Equipment (1)
+          </button>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+<span>4 Audited Schedules</span>
+</span>
+<span class="text-outline">/</span>
+<span>Currency: <strong>Sierra Leonean Leone (SLE)</strong></span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-space-lg" id="vendorGrid">
+<div class="vendor-card group relative flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200" data-category="goods">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Official corporate logo seal of Apex Supplies Ltd featuring clean geometric navy emblem with stationery quill symbol on soft blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzSUIHCHVdNhDDj0-Q1SwepSZ69OgfyURPtVVU9zflrrOHrobqUM34zxRFS-KKm3tT8S6islN2qVVTVvdagh9c2lHA19NVGN-22nb9lIMREn-Vm08JuhnFgMewdYa_NHBhb7ZvHmaXy9cq3Qe_Z3ueIKp8zgCPM1NLQcAtE_2qFnkz6kCgepif3soKZQoy888XzhOoC1IQeuLQ8UKPvE4P6rqgFB8Z6pG4t4IUANJy77_dxkQBiAT9Hw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-uppercase text-label-uppercase text-secondary font-bold">VENDOR-01</span>
+<span class="font-label-sm text-label-sm text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono font-medium">LTA-2024-012</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors font-bold">Apex Supplies Ltd</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Stationery, IT Consumables & Paper Products</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/60 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+<span>Approved & Active</span>
+</span>
+</div>
+<div class="grid grid-cols-3 gap-2 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Catalog Volume</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-financial-lg text-financial-lg text-on-surface">42</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SKUs</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Contract Schedule</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-mono font-semibold">SLE (Standard)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Last Recalibrated</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-medium">15 Jan 2025</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">High-Frequency Line Items</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Locked Unit Tariff</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">description</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">A4 Paper 80GSM (Ream of 500)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 145.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-012">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">folder</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Archival Box Folders (Reinforced)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 82.50</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-012">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">print</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">HP LaserJet Enterprise Toner 58A</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 2,850.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-012">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Audit cleared: Q1 Freetown Mission</span>
+</div>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-primary text-secondary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span>View Price List</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="vendor-card group relative flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200" data-category="goods">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Modern logistics company emblem for Sierra Logistics and Goods displaying cargo dispatch symbols in deep teal and azure blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Bk_LYD6heim3t_oomUn6ABpWQAma4qK6jYicvEVTqHXG79glYPxxhKk1r00hNiFkBzBqM5rQkz8CoSOWkFJ30PVsRXfcizCpzMrJE6fmKcdhlgLwwt7q-t4qUm7p7AIT58oxIeHfNvxHUuQEx5hqglLPXK6TcY1TuQw5TsAprWAdsnVtBVqs6-J7LlOnBtn1pfnhMQAfM2tPN6nBt3m1gmiiGIRA9qXuyNk2wHLa2TN2boJ2BDnlkQ"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-uppercase text-label-uppercase text-secondary font-bold">VENDOR-02</span>
+<span class="font-label-sm text-label-sm text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono font-medium">LTA-2024-019</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors font-bold">Sierra Logistics & Goods</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Field Equipment, Tents & Emergency Relief Items</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/60 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+<span>Approved & Active</span>
+</span>
+</div>
+<div class="grid grid-cols-3 gap-2 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Catalog Volume</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-financial-lg text-financial-lg text-on-surface">36</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SKUs</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Contract Schedule</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-mono font-semibold">SLE (Standard)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Last Recalibrated</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-medium">28 Jan 2025</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">High-Frequency Line Items</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Locked Unit Tariff</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">roofing</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Tarpaulins Heavy Duty 4x5m (UN Spec)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 510.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-019">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">water_drop</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Collapsible Water Jerrycans (10L Food Grade)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 120.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-019">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">medical_services</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Field Trauma First Aid Kits (Comprehensive)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 980.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-019">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Audit cleared: Field Logistics Sub-Office</span>
+</div>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-primary text-secondary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span>View Price List</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="vendor-card group relative flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200" data-category="services">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Technical enterprise insignia for Kambia Trading Enterprise depicting structured architectural lines in deep blue slate and brass metallic tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhvTawSxkdI44LPtYS1DNqpz3MCH_hqereO643tkUY19V8gk3YXHc4mpcgT9FckF_o0PA3fkF0S9W2rKq_wvwOiRsw4uDcF8mi0ZeA0tb6zFZvnPTArBoAknkdVK87mfL32_kEEHfWHxeb5it2_1zSOgNkWZjvx4eR7cFnpHvSQBKIy3HLHscJl5WbakkAmCt_jPSO6wno8hGHT5WlT232bURd8SRG5PpFpeCjdfh2cPe7kjnQFBYrdg"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-uppercase text-label-uppercase text-secondary font-bold">VENDOR-03</span>
+<span class="font-label-sm text-label-sm text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono font-medium">LTA-2024-023</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors font-bold">Kambia Trading Enterprise</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Building Hardware, Timber & Electrical Maintenance</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/60 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+<span>Approved & Active</span>
+</span>
+</div>
+<div class="grid grid-cols-3 gap-2 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Catalog Volume</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-financial-lg text-financial-lg text-on-surface">58</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SKUs</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Contract Schedule</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-mono font-semibold">SLE (Standard)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Last Recalibrated</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-medium">04 Feb 2025</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">High-Frequency Line Items</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Locked Unit Tariff</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">domain</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Portland Cement Grade 42.5N (50kg Bag)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 210.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-023">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">hardware</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Corrugated Zinc Roofing Sheets (Gauge 28, 10ft)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 340.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-023">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">cable</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Heavy Industrial Cable Drums (2.5mm 3-Core, 100m)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 1,750.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-023">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Audit cleared: Infrastructure Unit</span>
+</div>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-primary text-secondary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span>View Price List</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="vendor-card group relative flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200" data-category="equipment">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Corporate badge representing Peninsula Office and Field Depot with minimal geometric furniture silhouette in subtle navy and steel gray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwOfiHUzeFVOwR6HYRm_VUEBA-kI9VL0kyS8w404xej2ZZXt_TapDK8i38ccw-nQFxV4UJFsXgvem8h2x0PG5rPqCoBnggbnkFkG_wELMpmaAEGdZDUzEICiz8fvejQbQ90g-00nEjJRyU_azjvm_-8wqS7-gBPBQXR9L2pUY4HLqax0dTXF_o2xIAlw5UhP5CSFzBdkEh0PytIXvCo1P9n5bAkMS_O2SboPr3AMnA-4uSbBCAzFAObw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-uppercase text-label-uppercase text-secondary font-bold">VENDOR-04</span>
+<span class="font-label-sm text-label-sm text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono font-medium">LTA-2024-031</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors font-bold">Peninsula Office & Field Depot</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Office Furniture, Ergonomics & Secure Storage</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/60 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+<span>Approved & Active</span>
+</span>
+</div>
+<div class="grid grid-cols-3 gap-2 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Catalog Volume</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-financial-lg text-financial-lg text-on-surface">29</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SKUs</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Contract Schedule</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-mono font-semibold">SLE (Standard)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Last Recalibrated</span>
+<span class="font-label-md text-label-md text-on-surface mt-0.5 font-medium">12 Feb 2025</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">High-Frequency Line Items</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Locked Unit Tariff</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">chair_alt</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Ergonomic Mesh Swivel Task Chair</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 3,450.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-031">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">lock</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">4-Drawer Fire-Resistant Steel Cabinet</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 8,200.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-031">lock</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2.5 rounded bg-surface-bright hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-outline">table_restaurant</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Heavy Duty Field Folding Banquet Tables (6ft)</span>
+</div>
+<div class="flex items-center gap-1.5 font-mono font-semibold font-financial-md text-financial-md text-on-surface">
+<span>SLE 1,850.00</span>
+<span class="material-symbols-outlined text-[13px] text-outline" title="Price immutable under LTA-2024-031">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Audit cleared: Administrative Services</span>
+</div>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-primary text-secondary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span>View Price List</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md max-w-4xl">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-primary">Institutional Validity & Mandatory Audit Schedule</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-secondary font-semibold">IOM Manual Art. 14.8</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Unit prices listed within this directory are legally binding upon contracted suppliers through the Long Term Agreement (LTA) framework. Price recalibration is permissible solely during the bi-annual Mission Procurement Committee (MPC) review window. Current price validity extends through <strong>30 June 2025</strong>. Proforma invoices generated via this portal automatically lock to these exact statutory unit figures to safeguard against fiscal variance.
+            </p>
+</div>
+</div>
+<div class="flex lg:flex-col items-center lg:items-end justify-between w-full lg:w-auto gap-2 shrink-0">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+<span>Next MPC Window: <strong>15 May 2025</strong></span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline" href="#">
+<span>Procurement Audit Manual</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (() => {
+    const searchInput = document.getElementById('vendorSearchInput');
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const vendorCards = document.querySelectorAll('.vendor-card');
+    const routeMap = {
+      dashboard: 'index.html',
+      generate: 'proforma.html',
+      vendor: 'vendor.html',
+      overview: 'preforma_overview.html',
+      settings: 'index.html',
+      help: 'index.html'
+    };
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    const resolveRoute = (text) => {
+      const value = (text || '').trim().toLowerCase();
+      if (!value) return null;
+      if (value.includes('dashboard')) return routeMap.dashboard;
+      if (value.includes('generate proforma') || value.includes('generate new proforma')) return routeMap.generate;
+      if (value.includes('vendor price') || value.includes('approved price') || value.includes('vendor') || value.includes('audit manual')) return routeMap.vendor;
+      if (value.includes('history') || value.includes('past run') || value.includes('overview') || value.includes('ledger')) return routeMap.overview;
+      if (value.includes('settings') || value.includes('help') || value.includes('back') || value.includes('edit parameters')) return routeMap.settings;
+      return null;
+    };
+
+    function applyFilterAndSearch() {
+      vendorCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const textContent = card.innerText.toLowerCase();
+
+        const matchesCategory = (currentFilter === 'all') || (category === currentFilter);
+        const matchesSearch = textContent.includes(searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active-pill', 'bg-secondary', 'text-on-secondary');
+          btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        button.classList.add('active-pill', 'bg-secondary', 'text-on-secondary');
+        button.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+        currentFilter = button.getAttribute('data-filter');
+        applyFilterAndSearch();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        applyFilterAndSearch();
+      });
+    }
+
+    document.querySelectorAll('a[href="#"]').forEach((link) => {
+      const target = resolveRoute(link.textContent || '');
+      if (target) link.setAttribute('href', target);
+    });
+
+    document.querySelectorAll('[data-path]').forEach((node) => {
+      const path = (node.dataset.path || '').toLowerCase();
+      const target = routeMap[path];
+      if (target && node.getAttribute('href') === '#') {
+        node.setAttribute('href', target);
+      }
+    });
+
+    const nav = document.querySelector('aside, nav, [data-sidebar], .sidebar');
+    if (nav) {
+      const toggle = document.getElementById('mobile-nav-toggle') || document.createElement('button');
+      if (!toggle.id) {
+        toggle.id = 'mobile-nav-toggle';
+        toggle.type = 'button';
+        toggle.setAttribute('aria-label', 'Toggle navigation');
+        toggle.className = 'fixed left-4 top-4 z-50 inline-flex items-center justify-center rounded-lg border border-outline/20 bg-surface-container-lowest p-2.5 text-on-surface shadow-sm lg:hidden';
+        toggle.innerHTML = '<span class="material-symbols-outlined text-[22px]">menu</span>';
+        document.body.appendChild(toggle);
+      }
+
+      const syncNavState = () => {
+        if (window.innerWidth >= 1024) {
+          nav.classList.remove('hidden');
+        } else {
+          nav.classList.add('hidden');
+        }
+      };
+
+      toggle.addEventListener('click', () => {
+        if (window.innerWidth < 1024) {
+          nav.classList.toggle('hidden');
+        }
+      });
+
+      syncNavState();
+      window.addEventListener('resize', syncNavState);
+    }
+  })();
+</script>
+</main></div></body></html>

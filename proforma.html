@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>Generate Proforma | IOM Vendor Proforma Generator</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#85f8c4", "outline": "#74777e", "surface-container": "#e5eeff", "surface-bright": "#f8f9ff", "primary": "#000f22", "surface-container-low": "#eff4ff", "background": "#f8f9ff", "inverse-surface": "#213145", "tertiary-fixed-dim": "#68dba9", "error": "#ba1a1a", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-container": "#7db6ff", "on-surface": "#0b1c30", "on-background": "#0b1c30", "secondary": "#1960a3", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b0c8eb", "error-container": "#ffdad6", "on-surface-variant": "#43474d", "on-secondary": "#ffffff", "secondary-fixed-dim": "#a2c9ff", "on-secondary-container": "#00477f", "on-primary-container": "#768dad", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#005137", "primary-fixed": "#d2e4ff", "secondary-fixed": "#d3e4ff", "on-primary-fixed-variant": "#314865", "inverse-on-surface": "#eaf1ff", "tertiary": "#001209", "on-tertiary-fixed": "#002114", "surface-dim": "#cbdbf5", "surface-container-high": "#dce9ff", "on-secondary-fixed-variant": "#004881", "on-secondary-fixed": "#001c38", "surface-container-highest": "#d3e4fe", "surface": "#f8f9ff", "primary-container": "#0a2540", "on-primary-fixed": "#001c37", "inverse-primary": "#b0c8eb", "tertiary-container": "#002a1b", "on-error": "#ffffff", "on-error-container": "#93000a", "on-tertiary-container": "#1a9e70", "surface-tint": "#49607e", "outline-variant": "#c4c6ce" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1rem", "gutter-dense": "0.5rem", "space-sm": "0.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "space-lg": "1.25rem", "margin-panel": "2rem", "space-xl": "1.75rem", "margin": "1.5rem" }, "fontFamily": { "headline-sm": ["Inter"], "headline-lg": ["Inter"], "body-lg": ["Inter"], "financial-lg": ["Inter"], "body-md": ["Inter"], "display-lg": ["Inter"], "financial-md": ["Inter"], "label-sm": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Inter"], "label-uppercase": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "headline-sm": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "financial-lg": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "financial-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-uppercase": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "500" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[260px] bg-primary-container z-50 flex flex-col justify-between border-r border-outline-variant/20 shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="flex flex-col"><div class="p-space-lg border-b border-outline-variant/15"><div class="flex items-center gap-space-sm mb-space-xs"><img alt="IOM Proforma Generator Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VSQjfg0ycij9hDdszm_c3Tcv8ESkNdS1rZBVrHJEbNJN_TZrujgUAMsAzvqWZwozVFKExo23KwgP50XklnwNPqmHaAG2fETrqGxQNNnLn0J7DA04EnySwrAxmgGHEQAsfwKhCAP8M4NAPwjAmqhQmfKd8NA-A1eBkmWtXN9JwhEPhIePpT7lZkDl-y_Q9_AST9kR1_pBV9VKAlQo_nJ3BiKw0SQJvN-mqBHfO32FGBM70oysGSg8XGx26B"/><div class="flex flex-col"><span class="font-label-uppercase text-label-uppercase text-primary-fixed tracking-wider">IOM UN MIGRATION</span><span class="font-label-sm text-label-sm text-primary-fixed-dim leading-none">Proforma Generator</span></div></div><div class="mt-space-sm inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high/15 border border-outline-variant/20"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span><span class="font-label-sm text-label-sm text-surface-variant">Sierra Leone Mission • Freetown</span></div></div><div class="px-space-md py-space-sm"><span class="font-label-uppercase text-label-uppercase text-on-primary-container px-space-sm">Operations & Core</span></div><nav class="flex flex-col gap-1 px-space-sm" data-active-classes="bg-secondary/40 text-on-primary font-headline-sm border-l-[3px] border-secondary-container"><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg transition-colors bg-secondary/40 text-on-primary font-headline-sm border-l-[3px] border-secondary-container" data-path="generate-proforma" href="#"><span class="material-symbols-outlined text-[20px]">post_add</span><span>Generate Proforma</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="vendor-price-lists" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span><span>Vendor Price Lists</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="proforma-history" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span>Proforma History</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-primary-fixed-dim hover:bg-surface-container-high/10 hover:text-on-primary transition-colors font-label-md text-label-md" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-outline-variant/15 flex flex-col gap-space-sm"><div class="bg-surface-container-high/10 rounded-lg p-space-sm border border-outline-variant/20 flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-uppercase text-label-uppercase text-primary-fixed-dim">System Status</span><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span></div><span class="font-body-sm text-body-sm text-surface-bright">4 Approved Vendors Active</span></div><a class="flex items-center gap-space-sm px-space-sm py-1.5 text-primary-fixed-dim hover:text-on-primary transition-colors font-label-sm text-label-sm" data-path="documentation" href="#"><span class="material-symbols-outlined text-[18px]">help</span><span>Help & Statutory Guides</span></a></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_1px_4px_rgba(10,37,64,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><span class="font-label-md text-label-md text-on-surface font-semibold">Freetown Office</span><span class="text-outline">/</span><span class="text-secondary font-medium">Procurement & Logistics Unit</span></div><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-secondary font-semibold">Statutory PO Desk</span></div><div class="flex items-center gap-space-lg"><div class="relative flex items-center w-72"><span class="material-symbols-outlined absolute left-2.5 text-outline text-[18px]">search</span><input class="w-full pl-8 pr-3 py-1.5 bg-surface-container-low border border-outline-variant/60 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary focus:bg-surface-container-lowest transition-colors" placeholder="Quick proforma jump (P-YYYY-#)..." type="text"/></div><button class="relative p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-[1px] bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH2XEN6X1haeGeWWJ31Imf9DFGX1dbDaYjkVPBOjo5lL8F3n1C3zu-2WBw1P_z4GtsxA1ruC7r5A2O6sTaaBTX4iGEKChNkbsafvrLmATsvB-kgnQ7TfWpDtwE5LrU0WOwNQ53AZvHBgmj2IoLAXkpPprYoyexufrjRb7ECvRy5LWvuu6hpVN8xHfS39XaQzoOjESWK3sBBkKjBckdQS7bXyYYlaFnJSxSoqRhLtUu8ckt8DmRJcq7Cg"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-tertiary-fixed ring-2 ring-surface-container-lowest"></span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight font-semibold">Samuel Kargbo</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Senior Procurement Associate</span></div></div></div></header><main class="relative pt-16 bg-background min-h-screen p-space-lg w-full max-w-[1600px] mx-auto"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-secondary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-on-surface font-semibold">Generate Proforma</span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-space-md">
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">Generate Proforma</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary/10 text-secondary font-label-uppercase text-label-uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Procurement Cycle FY-2025
+        </span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2.5 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+          Statutory Framework Rev 4.2
+        </span>
+<button class="px-3 py-1.5 rounded bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+          Past Run Templates
+        </button>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure procurement parameters, target budget, and item weighting.</p>
+</div>
+<div class="grid grid-cols-12 gap-space-lg items-start pb-margin-panel">
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="grid grid-cols-3 gap-space-sm relative">
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-low">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">1</span>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface">Vendor & Budget</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Active Configuration</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-lowest">
+<span class="w-6 h-6 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center">2</span>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Category Scope</span>
+<span class="font-body-sm text-body-sm text-outline">Target selection</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs rounded bg-surface-container-lowest">
+<span class="w-6 h-6 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center">3</span>
+<div class="flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Output Engine</span>
+<span class="font-body-sm text-body-sm text-outline">Draft generation</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Proforma Parameters</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mandatory requisition inputs conforming to UN Procurement guidelines.</p>
+</div>
+<span class="font-label-uppercase text-label-uppercase px-2 py-0.5 rounded bg-tertiary-fixed/40 text-on-tertiary-fixed-variant font-semibold">
+            Audit Enforced
+          </span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between font-semibold" for="vendor-select">
+<span>Select Approved Vendor <span class="text-error">*</span></span>
+<span class="font-label-sm text-label-sm text-secondary font-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span> SLA Pricing Locked
+            </span>
+</label>
+<div class="relative">
+<select class="w-full pl-3 pr-10 py-2.5 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg appearance-none cursor-pointer focus:bg-surface-container-lowest focus:outline-none transition-colors" id="vendor-select">
+<option selected="" value="apex">Vendor 1 - Apex Supplies Ltd (Stationery, ICT & Office Consumables)</option>
+<option value="sierra">Vendor 2 - Sierra Logistics & Goods (Field Supplies & PPE)</option>
+<option value="kambia">Vendor 3 - Kambia Trading Enterprise (General Provisions & Maintenance)</option>
+<option value="peninsula">Vendor 4 - Peninsula Office & Field Depot (Furniture & Heavy Logistics)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none text-[20px]">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Vendor master agreement must hold current compliance approval status for FY-2025.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between" for="required-amount">
+<span>Required Amount <span class="text-error">*</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Currency: SLE</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-financial-md text-financial-md text-secondary font-bold">SLE</span>
+<input class="w-full pl-12 pr-3 py-2 bg-surface-container-low rounded-lg font-financial-lg text-financial-lg text-primary focus:bg-surface-container-lowest focus:outline-none text-right font-bold transition-colors" id="required-amount" type="text" value="4,000"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Budget allocation in SLE. Decimal fractions rounded by discrete units.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="req-id">
+              Mission Requisition ID <span class="text-error">*</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">tag</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:outline-none transition-colors" id="req-id" type="text" value="REQ-SL-2025-0891"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cross-referenced with Sierra Leone PRISM ERP registry.</p>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+            Generation Method <span class="text-error">*</span>
+</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<label class="relative flex flex-col p-space-md rounded-xl bg-surface-container-low cursor-pointer transition-all hover:bg-surface-container" id="method-exact-label">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="accent-primary w-4 h-4 cursor-pointer" name="generation_method" type="radio" value="exact"/>
+<span class="font-headline-sm text-headline-sm text-on-surface">Exact Total</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">pin</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Strict target match based on discrete unit math. Allocates quantities to hit precisely SLE 4,000 without 1 Cent deviation.
+              </p>
+</label>
+<label class="relative flex flex-col p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-all" id="method-closest-label">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<input class="accent-primary w-4 h-4 cursor-pointer" name="generation_method" type="radio" value="closest"/>
+<span class="font-headline-sm text-headline-sm text-on-surface">Closest Possible Total</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">tune</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Best algorithmic fit within budget tolerance (<= SLE 4,000). Optimizes inventory utility across core item sets.
+              </p>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Category Scope (Optional Item Filter)</span>
+<button class="font-label-sm text-label-sm text-secondary hover:underline" id="toggle-all-categories" type="button">Select All</button>
+</div>
+<div class="grid grid-cols-3 gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-lowest cursor-pointer hover:bg-surface-bright transition-colors">
+<input checked="" class="accent-secondary w-4 h-4 rounded" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">Office Supplies</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-lowest cursor-pointer hover:bg-surface-bright transition-colors">
+<input checked="" class="accent-secondary w-4 h-4 rounded" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">Sanitation & Hygiene</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-lowest cursor-pointer hover:bg-surface-bright transition-colors">
+<input checked="" class="accent-secondary w-4 h-4 rounded" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">IT Peripherals</span>
+</label>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All 3 categories active. 42 eligible items selected for algorithmic distribution.</p>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-start gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">info</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Statutory Integrity Notice</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Unit prices are strictly fixed according to the selected vendor's approved price list. The generator dynamically adjusts line quantities only to preserve institutional parity.
+            </p>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between gap-space-md">
+<button class="px-space-md py-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+            Reset Defaults
+          </button>
+<button class="flex-1 py-3 px-space-lg rounded bg-primary text-on-primary hover:bg-primary-container font-headline-sm text-headline-sm transition-all shadow-md flex items-center justify-center gap-2 group" id="btn-generate" type="button">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed group-hover:rotate-12 transition-transform">calculate</span>
+<span>Generate Proforma</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[20px]">security</span>
+<span class="font-body-sm text-body-sm">Digital Signature ready for Chief of Mission review post-generation</span>
+</div>
+<span class="font-label-uppercase text-label-uppercase text-outline font-semibold">IOM-FREETOWN-LOG</span>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</div>
+<div>
+<span class="font-label-uppercase text-label-uppercase text-outline">Selected Counterparty</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Apex Supplies Ltd</h3>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed"></span> LTA Active
+          </span>
+</div>
+<div class="relative h-28 rounded-lg overflow-hidden flex items-end p-space-md bg-primary-container">
+<div class="absolute inset-0 opacity-20 bg-gradient-to-tr from-secondary to-tertiary-fixed pointer-events-none"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-overlay" data-alt="Warehouse storage interior for office supplies and stationery goods in Freetown Sierra Leone, high shelves with neatly packed carton boxes under institutional industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX060laWbHBkQSJeMM9APfakv0GWzZ6p3TZtBlGPq5H22FqD4yFmJXaNVkZMpEJcLMzwZrkyCTMX7VvfEO64QClmUSE9FVNeFIFeDrKGltviGK_9G6_Yrt3soGytT4ewXJoMa-k3ka_uduZ6wdB47aUMyi-Chch9LDiInWOu8tmDicZKl9gyZAmseBPk020d_portABnO1ZVine5dAyr7M8F2Qxdtqkz90L-HZ-VxBIDIIDrOXKNxc8Q"/>
+<div class="relative z-10 flex flex-col">
+<span class="font-label-uppercase text-label-uppercase text-primary-fixed-dim">Contract Designation</span>
+<span class="font-financial-md text-financial-md text-on-primary">LTA-2024-012 • Stationery & Hardware</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-0.5">
+<span class="font-label-uppercase text-label-uppercase text-outline">Base Catalog</span>
+<span class="font-financial-lg text-financial-lg text-primary">42 Items</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Approved & Fixed</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-0.5">
+<span class="font-label-uppercase text-label-uppercase text-outline">Price Lock</span>
+<span class="font-headline-sm text-headline-sm text-primary">31 Dec 2025</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Valid for 344 days</span>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Last Price Committee Audit:</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">15 Jan 2025 (Passed)</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Calculation Rules & Policy</h3>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="font-financial-md text-financial-md text-secondary font-bold">01</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Fixed Unit Prices</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unit pricing is immutable and locked to statutory supplier schedules. Manual line overrides are disabled.</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="font-financial-md text-financial-md text-secondary font-bold">02</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Integer Quantity Multipliers</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Only whole units (packs, boxes, cartridges) are allocated. No fractions or decimal quantity splits.</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="font-financial-md text-financial-md text-secondary font-bold">03</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Anti-Overspend Guarantee</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The allocation engine operates with strict bounded ceilings. Under no circumstance will draft exceed target budget.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">table_view</span>
+<h4 class="font-label-uppercase text-label-uppercase text-on-surface">Algorithm Preview Model</h4>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Target: SLE 4,000</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-primary text-on-primary">
+<th class="py-1.5 px-2 font-label-uppercase text-label-uppercase rounded-l">Item Description</th>
+<th class="py-1.5 px-2 font-label-uppercase text-label-uppercase text-right">Fixed Unit</th>
+<th class="py-1.5 px-2 font-label-uppercase text-label-uppercase text-center">Qty</th>
+<th class="py-1.5 px-2 font-label-uppercase text-label-uppercase text-right rounded-r">Total (SLE)</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="bg-surface-container-lowest">
+<td class="py-2 px-2 text-on-surface font-medium">A4 Paper Reams (Box 5x)</td>
+<td class="py-2 px-2 text-right text-on-surface-variant font-mono">
+<span class="inline-flex items-center gap-0.5 px-1 py-0.5 rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[10px] text-outline">lock</span> 250
+                  </span>
+</td>
+<td class="py-2 px-2 text-center text-on-surface font-semibold">8</td>
+<td class="py-2 px-2 text-right font-financial-md text-financial-md text-primary font-bold">2,000</td>
+</tr>
+<tr class="bg-surface-container-low">
+<td class="py-2 px-2 text-on-surface font-medium">Ballpoint Pen Black (Pack 50)</td>
+<td class="py-2 px-2 text-right text-on-surface-variant font-mono">
+<span class="inline-flex items-center gap-0.5 px-1 py-0.5 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[10px] text-outline">lock</span> 120
+                  </span>
+</td>
+<td class="py-2 px-2 text-center text-on-surface font-semibold">10</td>
+<td class="py-2 px-2 text-right font-financial-md text-financial-md text-primary font-bold">1,200</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="py-2 px-2 text-on-surface font-medium">Sanitary Hand Gel (5L Container)</td>
+<td class="py-2 px-2 text-right text-on-surface-variant font-mono">
+<span class="inline-flex items-center gap-0.5 px-1 py-0.5 rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[10px] text-outline">lock</span> 400
+                  </span>
+</td>
+<td class="py-2 px-2 text-center text-on-surface font-semibold">2</td>
+<td class="py-2 px-2 text-right font-financial-md text-financial-md text-primary font-bold">800</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pt-space-xs flex items-center justify-between p-space-sm rounded bg-surface-container text-on-surface">
+<span class="font-label-uppercase text-label-uppercase text-on-surface-variant">Allocated Total:</span>
+<div class="flex items-baseline gap-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">SLE</span>
+<span class="font-financial-lg text-financial-lg text-primary font-bold">4,000.00</span>
+<span class="material-symbols-outlined text-secondary text-[16px] ml-1">check_circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Tolerance Variance: <strong>0.00 SLE</strong></span>
+<span class="text-secondary font-semibold">Status: Balanced</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initGenerateProforma() {
+    const radioExact = document.querySelector('input[name="generation_method"][value="exact"]');
+    const radioClosest = document.querySelector('input[name="generation_method"][value="closest"]');
+    const labelExact = document.getElementById('method-exact-label');
+    const labelClosest = document.getElementById('method-closest-label');
+    const btnGenerate = document.getElementById('btn-generate');
+    const toggleCategories = document.getElementById('toggle-all-categories');
+
+    function updateMethodStyles() {
+      if (radioExact.checked) {
+        labelExact.classList.remove('bg-surface-container-lowest');
+        labelExact.classList.add('bg-surface-container-low');
+        labelClosest.classList.remove('bg-surface-container-low');
+        labelClosest.classList.add('bg-surface-container-lowest');
+      } else {
+        labelClosest.classList.remove('bg-surface-container-lowest');
+        labelClosest.classList.add('bg-surface-container-low');
+        labelExact.classList.remove('bg-surface-container-low');
+        labelExact.classList.add('bg-surface-container-lowest');
+      }
+    }
+
+    if (radioExact && radioClosest) {
+      radioExact.addEventListener('change', updateMethodStyles);
+      radioClosest.addEventListener('change', updateMethodStyles);
+    }
+
+    if (toggleCategories) {
+      toggleCategories.addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+        checkboxes.forEach(cb => cb.checked = !allChecked);
+        toggleCategories.textContent = allChecked ? 'Select All' : 'Deselect All';
+      });
+    }
+
+    if (btnGenerate) {
+      btnGenerate.addEventListener('click', () => {
+        const originalText = btnGenerate.innerHTML;
+        btnGenerate.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+          <span>Computing Optimal Basket...</span>
+        `;
+        btnGenerate.disabled = true;
+
+        setTimeout(() => {
+          btnGenerate.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] text-tertiary-fixed">task_alt</span>
+            <span>Generated Proforma PO-2025-0891</span>
+          `;
+          btnGenerate.classList.remove('bg-primary');
+          btnGenerate.classList.add('bg-secondary');
+
+          setTimeout(() => {
+            btnGenerate.innerHTML = originalText;
+            btnGenerate.disabled = false;
+            btnGenerate.classList.add('bg-primary');
+            btnGenerate.classList.remove('bg-secondary');
+          }, 3000);
+        }, 800);
+      });
+    }
+  })();
+.
+<script>
+  (() => {
+    const routeMap = {
+      dashboard: 'index.html',
+      generate: 'proforma.html',
+      vendor: 'vendor.html',
+      overview: 'preforma_overview.html',
+      settings: 'index.html',
+      help: 'index.html'
+    };
+
+    const resolveRoute = (text) => {
+      const value = (text || '').trim().toLowerCase();
+      if (!value) return null;
+      if (value.includes('dashboard')) return routeMap.dashboard;
+      if (value.includes('generate proforma') || value.includes('generate new proforma')) return routeMap.generate;
+      if (value.includes('vendor price') || value.includes('approved price') || value.includes('vendor') || value.includes('audit manual')) return routeMap.vendor;
+      if (value.includes('history') || value.includes('past run') || value.includes('overview') || value.includes('ledger')) return routeMap.overview;
+      if (value.includes('settings') || value.includes('help') || value.includes('back') || value.includes('edit parameters')) return routeMap.settings;
+      return null;
+    };
+
+    document.querySelectorAll('a[href="#"]').forEach((link) => {
+      const target = resolveRoute(link.textContent || '');
+      if (target) link.setAttribute('href', target);
+    });
+
+    document.querySelectorAll('[data-path]').forEach((node) => {
+      const path = (node.dataset.path || '').toLowerCase();
+      const target = routeMap[path];
+      if (target && node.getAttribute('href') === '#') {
+        node.setAttribute('href', target);
+      }
+    });
+
+    const nav = document.querySelector('aside, nav, [data-sidebar], .sidebar');
+    if (nav) {
+      const toggle = document.getElementById('mobile-nav-toggle') || document.createElement('button');
+      if (!toggle.id) {
+        toggle.id = 'mobile-nav-toggle';
+        toggle.type = 'button';
+        toggle.setAttribute('aria-label', 'Toggle navigation');
+        toggle.className = 'fixed left-4 top-4 z-50 inline-flex items-center justify-center rounded-lg border border-outline/20 bg-surface-container-lowest p-2.5 text-on-surface shadow-sm lg:hidden';
+        toggle.innerHTML = '<span class="material-symbols-outlined text-[22px]">menu</span>';
+        document.body.appendChild(toggle);
+      }
+
+      const syncNavState = () => {
+        if (window.innerWidth >= 1024) {
+          nav.classList.remove('hidden');
+        } else {
+          nav.classList.add('hidden');
+        }
+      };
+
+      toggle.addEventListener('click', () => {
+        if (window.innerWidth < 1024) {
+          nav.classList.toggle('hidden');
+        }
+      });
+
+      syncNavState();
+      window.addEventListener('resize', syncNavState);
+    }
+  })();
+</script></main></div></body></html>
