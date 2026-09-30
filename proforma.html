@@ -126,7 +126,7 @@
 <select class="w-full px-3 py-2.5 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:outline-none" id="sheet-select"></select>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Select which Shaw Trading category to use for this proforma.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
 <div class="flex flex-col gap-space-xs">
 <label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between" for="required-amount">
 <span>Required Amount <span class="text-error">*</span></span>
@@ -136,7 +136,12 @@
 <span class="absolute left-3 font-financial-md text-financial-md text-secondary font-bold">SLE</span>
 <input class="w-full pl-12 pr-3 py-2 bg-surface-container-low rounded-lg font-financial-lg text-financial-lg text-primary focus:bg-surface-container-lowest focus:outline-none text-right font-bold transition-colors" id="required-amount" type="text" value="" placeholder="Enter budget"/>
 </div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Budget allocation in SLE. Decimal fractions rounded by discrete units.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Budget allocation in SLE.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="item-count">Number of different items</label>
+<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:outline-none" id="item-count" type="number" min="1" value="8" required/>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Choose how many different products to include.</p>
 </div>
 <div class="flex flex-col gap-space-xs">
 <label class="font-label-md text-label-md text-on-surface font-semibold" for="req-id">
@@ -185,7 +190,7 @@
 <div class="flex flex-col">
 <span class="font-label-md text-label-md text-primary font-bold">Statutory Integrity Notice</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Prices come from the selected price list. The generator can include more than seven different items; each item can have a maximum of 9 or 10 units depending on whether your budget covers 10 units at that price.
+              Prices come from the selected price list. It includes the number of different products you choose. Each item can have a maximum of 9 or 10 units depending on your budget.
             </p>
 </div>
 </div>
@@ -260,6 +265,7 @@
   const sheetRow = document.getElementById('sheet-scope-row');
   const sheetSelect = document.getElementById('sheet-select');
   const amountInput = document.getElementById('required-amount');
+  const itemCountInput = document.getElementById('item-count');
   const reqInput = document.getElementById('req-id');
   const body = document.getElementById('allocationTableBody');
   const totalNode = document.getElementById('allocationTotalValue');
@@ -289,43 +295,55 @@
     sheetRow.classList.toggle('hidden',!show);
     sheetRow.classList.toggle('flex',show);
     if(show&&!sheets.includes(sheetSelect.value))sheetSelect.selectedIndex=0;
+    updateItemCountLimit();
+  }
+  function updateItemCountLimit(){
+    const count=selectedItems().length;
+    itemCountInput.max=String(count);
+    if(Number(itemCountInput.value)>count)itemCountInput.value=String(count);
   }
   function selectedItems(){
     const items=catalogs[vendorSelect.value]||[];
     return sheetRow.classList.contains('hidden')?items:items.filter(item=>item.category===sheetSelect.value);
   }
-  function allocate(target, items, exactOnly){
+  function allocate(target, items, exactOnly, desiredCount){
     const cents=Math.round(target*100);
-    const priced=items.map((item,index)=>({...item,index,cents:Math.round(Number(item.price)*100)})).filter(item=>item.cents>0);
+    const priced=items.map((item,index)=>({...item,index,cents:Math.round(Number(item.price)*100)})).filter(item=>item.cents>0&&item.cents<=cents);
+    if(priced.length<desiredCount) throw new Error(`Only ${priced.length} different items fit your budget. Reduce the number of items.`);
     const gcd=(a,b)=>b?gcd(b,a%b):a;
     const increment=priced.reduce((value,item)=>gcd(value,item.cents),0)||1;
-    const targetUnits=Math.floor(cents/increment);
-    const usable=priced.filter(item=>item.cents<=cents).map(item=>({...item,units:item.cents/increment}));
-    const lineCount=new Int32Array(targetUnits+1); lineCount.fill(-1); lineCount[0]=0;
-    const paths=new Array(targetUnits+1);
-    for(const item of usable){
-      if(item.units>targetUnits) continue;
-      for(let amount=targetUnits;amount>=item.units;amount--){
-        const itemQtyCap=cents>=item.cents*10?10:9;
-        const maxQty=Math.min(itemQtyCap,Math.floor(amount/item.units));
-        for(let qty=1;qty<=maxQty;qty++){
-          const previous=amount-qty*item.units;
-          if(lineCount[previous]<0) continue;
-          const candidateCount=lineCount[previous]+1;
-          if(candidateCount>lineCount[amount]){
-            lineCount[amount]=candidateCount;
-            paths[amount]={previous,index:item.index,qty};
+    const targetUnits=Math.floor(cents/increment), width=targetUnits+1;
+    const stateCount=(desiredCount+1)*width;
+    const reachable=new Uint8Array(stateCount); reachable[0]=1;
+    const paths=new Array(stateCount);
+    for(const item of priced){
+      const units=item.cents/increment;
+      const itemQtyCap=cents>=item.cents*10?10:9;
+      for(let count=desiredCount;count>=1;count--){
+        const row=count*width, priorRow=(count-1)*width;
+        for(let amount=targetUnits;amount>=units;amount--){
+          const state=row+amount;
+          if(reachable[state])continue;
+          const maxQty=Math.min(itemQtyCap,Math.floor(amount/units));
+          for(let qty=1;qty<=maxQty;qty++){
+            const priorAmount=amount-qty*units, priorState=priorRow+priorAmount;
+            if(reachable[priorState]){
+              reachable[state]=1;
+              paths[state]={parent:paths[priorState]||null,index:item.index,qty};
+              break;
+            }
           }
         }
       }
     }
-    let used=targetUnits; while(used>0&&lineCount[used]<0)used--;
-    if(used===0) return {rows:[],total:0};
-    const rowsByIndex=new Map(); let cursor=used;
-    while(cursor>0){const path=paths[cursor];if(!path)break;rowsByIndex.set(path.index,path.qty);cursor=path.previous;}
+    let used=targetUnits;const finalRow=desiredCount*width;
+    while(used>0&&!reachable[finalRow+used])used--;
+    if(used===0) throw new Error(`Could not fit exactly ${desiredCount} different items within this budget. Increase the budget or reduce the item count.`);
+    const rowsByIndex=new Map();let path=paths[finalRow+used];
+    while(path){rowsByIndex.set(path.index,path.qty);path=path.parent;}
     const rows=[...rowsByIndex].map(([idx,qty])=>{const item=items[idx];return {description:item.description,unit:item.unit||'Unit',qty,unitPrice:Number(item.price),total:qty*Number(item.price)}});
     const totalCents=used*increment;
-    if(exactOnly&&totalCents!==cents) throw new Error(`No exact total is possible with a budget-based maximum of 9 or 10 units per item. Closest amount within budget is SLE ${fmt(totalCents/100)}. Choose Closest Possible Total to continue.`);
+    if(exactOnly&&totalCents!==cents)throw new Error(`No exact total is possible with exactly ${desiredCount} items. Closest amount within budget is SLE ${fmt(totalCents/100)}. Choose Closest Possible Total to continue.`);
     return {rows,total:totalCents/100};
   }
   function render(rows,total){
@@ -337,9 +355,12 @@
     const target=Number(String(amountInput.value).replace(/[^0-9.]/g,''));
     if(!target||target<=0){alert('Enter a budget greater than zero.');return}
     const key=vendorSelect.value, items=selectedItems();
+    const desiredCount=Number(itemCountInput.value);
+    if(!Number.isInteger(desiredCount)||desiredCount<1){alert('Enter a whole number of items greater than zero.');return}
+    if(desiredCount>items.length){alert(`This price list has ${items.length} items. Choose a smaller item count.`);return}
     if(!items.length){alert('This vendor has no usable price list.');return}
     try{
-      const result=allocate(target,items,exact.checked);
+      const result=allocate(target,items,exact.checked,desiredCount);
       if(!result.rows.length){alert('No listed item fits within this budget.');return}
       render(result.rows,result.total);
       const variance=target-result.total;
@@ -347,7 +368,7 @@
       const status=document.querySelector('span.text-secondary.font-semibold');if(status)status.textContent=variance===0?'Status: Balanced':'Status: Under budget';
       if(save){
         const date=new Date();const serial=String(date.getTime()).slice(-6);
-        const draft={number:`PRO-${date.getFullYear()}-${serial}`,date:date.toISOString(),vendor:key,sheet:sheetRow.classList.contains('hidden')?'':sheetSelect.value,requisition:reqInput.value.trim(),target,method:exact.checked?'exact':'closest',rows:result.rows,total:result.total};
+        const draft={number:`PRO-${date.getFullYear()}-${serial}`,date:date.toISOString(),vendor:key,sheet:sheetRow.classList.contains('hidden')?'':sheetSelect.value,requisition:reqInput.value.trim(),target,method:exact.checked?'exact':'closest',itemCount:desiredCount,rows:result.rows,total:result.total};
         localStorage.setItem('currentProforma',JSON.stringify(draft));
         location.href='preforma_overview.html';
       }
@@ -361,11 +382,11 @@
       if(!items.length)throw new Error('No item descriptions and unit prices were found in this workbook.');setCatalog(file.name.replace(/\.xlsx?$/i,''),items);updateSheetOptions();
     }catch(err){alert(err.message||'Could not read that workbook.')}
   });
-  document.querySelectorAll('button').forEach(b=>{if(b.textContent.includes('Reset Defaults'))b.addEventListener('click',()=>{populateVendors();amountInput.value='4000';reqInput.value='';render([],0)})});
+  document.querySelectorAll('button').forEach(b=>{if(b.textContent.includes('Reset Defaults'))b.addEventListener('click',()=>{populateVendors();amountInput.value='';reqInput.value='';itemCountInput.value='8';updateSheetOptions();render([],0)})});
   populateVendors();
   updateSheetOptions();
   vendorSelect.addEventListener('change',()=>{updateSheetOptions();render([],0)});
-  sheetSelect.addEventListener('change',()=>render([],0));
+  sheetSelect.addEventListener('change',()=>{updateItemCountLimit();render([],0)});
 })();
 </script></main></div><script>
 (() => {
