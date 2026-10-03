@@ -168,7 +168,7 @@
 <span class="material-symbols-outlined text-secondary text-[20px]">pin</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                Finds an exact total when the listed unit prices allow it.
+                Finds an exact total when possible; otherwise uses the closest total under your budget.
               </p>
 </label>
 <label class="relative flex flex-col p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-all" id="method-closest-label">
@@ -180,7 +180,7 @@
 <span class="material-symbols-outlined text-outline text-[20px]">tune</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                Uses the closest total that stays within your budget.
+                Uses the closest achievable total under your budget and shows any remaining balance.
               </p>
 </label>
 </div>
@@ -190,7 +190,7 @@
 <div class="flex flex-col">
 <span class="font-label-md text-label-md text-primary font-bold">Statutory Integrity Notice</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Prices come from the selected price list. It includes the number of different products you choose. Each item can have a maximum of 9 or 10 units depending on your budget.
+              Prices come from the selected price list. The item count is the number of different products. Quantity is limited to 24 units per item to keep the proforma balanced.
             </p>
 </div>
 </div>
@@ -271,7 +271,6 @@
   const totalNode = document.getElementById('allocationTotalValue');
   const generate = document.getElementById('btn-generate');
   const upload = document.getElementById('excel-upload');
-  const exact = document.querySelector('input[name="generation_method"][value="exact"]');
   const keyFor = name => name.toLowerCase().replace(/\.xlsx?$/i,'').replace(/[_-]+/g,' ').trim();
   const fmt = n => Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
   const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -306,7 +305,7 @@
     const items=catalogs[vendorSelect.value]||[];
     return sheetRow.classList.contains('hidden')?items:items.filter(item=>item.category===sheetSelect.value);
   }
-  function allocate(target, items, exactOnly, desiredCount){
+  function allocate(target, items, desiredCount){
     const cents=Math.round(target*100);
     const priced=items.map((item,index)=>({...item,index,cents:Math.round(Number(item.price)*100)})).filter(item=>item.cents>0&&item.cents<=cents);
     if(priced.length<desiredCount) throw new Error(`Only ${priced.length} different items fit your budget. Reduce the number of items.`);
@@ -318,13 +317,12 @@
     const paths=new Array(stateCount);
     for(const item of priced){
       const units=item.cents/increment;
-      const itemQtyCap=cents>=item.cents*10?10:9;
       for(let count=desiredCount;count>=1;count--){
         const row=count*width, priorRow=(count-1)*width;
         for(let amount=targetUnits;amount>=units;amount--){
           const state=row+amount;
           if(reachable[state])continue;
-          const maxQty=Math.min(itemQtyCap,Math.floor(amount/units));
+          const maxQty=Math.min(24,Math.floor(amount/units));
           for(let qty=1;qty<=maxQty;qty++){
             const priorAmount=amount-qty*units, priorState=priorRow+priorAmount;
             if(reachable[priorState]){
@@ -343,8 +341,7 @@
     while(path){rowsByIndex.set(path.index,path.qty);path=path.parent;}
     const rows=[...rowsByIndex].map(([idx,qty])=>{const item=items[idx];return {description:item.description,unit:item.unit||'Unit',qty,unitPrice:Number(item.price),total:qty*Number(item.price)}});
     const totalCents=used*increment;
-    if(exactOnly&&totalCents!==cents)throw new Error(`No exact total is possible with exactly ${desiredCount} items. Closest amount within budget is SLE ${fmt(totalCents/100)}. Choose Closest Possible Total to continue.`);
-    return {rows,total:totalCents/100};
+    return {rows,total:totalCents/100,exact:totalCents===cents};
   }
   function render(rows,total){
     body.innerHTML='';
@@ -360,7 +357,7 @@
     if(desiredCount>items.length){alert(`This price list has ${items.length} items. Choose a smaller item count.`);return}
     if(!items.length){alert('This vendor has no usable price list.');return}
     try{
-      const result=allocate(target,items,exact.checked,desiredCount);
+      const result=allocate(target,items,desiredCount);
       if(!result.rows.length){alert('No listed item fits within this budget.');return}
       render(result.rows,result.total);
       const variance=target-result.total;
@@ -368,7 +365,7 @@
       const status=document.querySelector('span.text-secondary.font-semibold');if(status)status.textContent=variance===0?'Status: Balanced':'Status: Under budget';
       if(save){
         const date=new Date();const serial=String(date.getTime()).slice(-6);
-        const draft={number:`PRO-${date.getFullYear()}-${serial}`,date:date.toISOString(),vendor:key,sheet:sheetRow.classList.contains('hidden')?'':sheetSelect.value,requisition:reqInput.value.trim(),target,method:exact.checked?'exact':'closest',itemCount:desiredCount,rows:result.rows,total:result.total};
+        const draft={number:`PRO-${date.getFullYear()}-${serial}`,date:date.toISOString(),vendor:key,sheet:sheetRow.classList.contains('hidden')?'':sheetSelect.value,requisition:reqInput.value.trim(),target,method:result.exact?'exact':'closest',itemCount:desiredCount,rows:result.rows,total:result.total};
         localStorage.setItem('currentProforma',JSON.stringify(draft));
         location.href='preforma_overview.html';
       }
