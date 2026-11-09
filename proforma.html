@@ -190,7 +190,7 @@
 <div class="flex flex-col">
 <span class="font-label-md text-label-md text-primary font-bold">Statutory Integrity Notice</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Prices come from the selected price list. The item count is the number of different products. Quantity is limited to 10 units per item for Mobile Phone, 24 for other vendors, and by the budget for Cosmetic vendors.
+              Prices come from the selected price list. The item count is the number of different products. Quantity is 10 units per item for Mobile Phone, 25–30 for Cosmetic vendors, and up to 24 for other vendors.
             </p>
 </div>
 </div>
@@ -315,22 +315,29 @@
     const stateCount=(desiredCount+1)*width;
     const reachable=new Uint8Array(stateCount); reachable[0]=1;
     const paths=new Array(stateCount);
+    const vendorName=vendorSelect.value.toLowerCase();
+    const isCosmetic=vendorName.includes('cosmetic');
+    const minimumQuantity=isCosmetic?25:1;
+    const quantityLimit=vendorName.includes('mobile phone')?10:isCosmetic?30:24;
     for(const item of priced){
       const units=item.cents/increment;
       for(let count=desiredCount;count>=1;count--){
         const row=count*width, priorRow=(count-1)*width;
-        for(let amount=targetUnits;amount>=units;amount--){
+        for(let amount=units*minimumQuantity;amount<=targetUnits;amount++){
           const state=row+amount;
           if(reachable[state])continue;
-          const vendorName=vendorSelect.value.toLowerCase();
-          const quantityLimit=vendorName.includes('mobile phone')?10:vendorName.includes('cosmetic')?Infinity:24;
-          const maxQty=Math.min(quantityLimit,Math.floor(amount/units));
-          for(let qty=1;qty<=maxQty;qty++){
-            const priorAmount=amount-qty*units, priorState=priorRow+priorAmount;
+          const previousAmount=amount-units;
+          const sameItemPath=paths[row+previousAmount];
+          if(sameItemPath&&sameItemPath.index===item.index){
+            if(sameItemPath.qty<quantityLimit){
+              reachable[state]=1;
+              paths[state]={parent:sameItemPath.parent,index:item.index,qty:sameItemPath.qty+1};
+            }
+          }else{
+            const priorState=priorRow+amount-units*minimumQuantity;
             if(reachable[priorState]){
               reachable[state]=1;
-              paths[state]={parent:paths[priorState]||null,index:item.index,qty};
-              break;
+              paths[state]={parent:paths[priorState]||null,index:item.index,qty:minimumQuantity};
             }
           }
         }
@@ -338,7 +345,9 @@
     }
     let used=targetUnits;const finalRow=desiredCount*width;
     while(used>0&&!reachable[finalRow+used])used--;
-    if(used===0) throw new Error(`Could not fit exactly ${desiredCount} different items within this budget. Increase the budget or reduce the item count.`);
+    if(used===0) throw new Error(isCosmetic
+      ? `Could not fit ${desiredCount} cosmetic items at 25–30 units each within this budget. Increase the budget or reduce the item count.`
+      : `Could not fit exactly ${desiredCount} different items within this budget. Increase the budget or reduce the item count.`);
     const rowsByIndex=new Map();let path=paths[finalRow+used];
     while(path){rowsByIndex.set(path.index,path.qty);path=path.parent;}
     const rows=[...rowsByIndex].map(([idx,qty])=>{const item=items[idx];return {description:item.description,unit:item.unit||'Unit',qty,unitPrice:Number(item.price),total:qty*Number(item.price)}});
