@@ -190,7 +190,7 @@
 <div class="flex flex-col">
 <span class="font-label-md text-label-md text-primary font-bold">Statutory Integrity Notice</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Prices come from the selected price list. The item count is the number of different products. Quantity is limited to 10 units per item for Mobile Phone and 24 for other vendors.
+              Prices come from the selected price list. The item count is the number of different products. Quantity is limited to 10 units per item for Mobile Phone, 24 for other vendors, and by the budget for Cosmetic vendors.
             </p>
 </div>
 </div>
@@ -322,7 +322,8 @@
         for(let amount=targetUnits;amount>=units;amount--){
           const state=row+amount;
           if(reachable[state])continue;
-          const quantityLimit=vendorSelect.value.toLowerCase().includes('mobile phone')?10:24;
+          const vendorName=vendorSelect.value.toLowerCase();
+          const quantityLimit=vendorName.includes('mobile phone')?10:vendorName.includes('cosmetic')?Infinity:24;
           const maxQty=Math.min(quantityLimit,Math.floor(amount/units));
           for(let qty=1;qty<=maxQty;qty++){
             const priorAmount=amount-qty*units, priorState=priorRow+priorAmount;
